@@ -18,6 +18,7 @@ class Covariance(object):
             self.meany = self.meany + (y - self.meany) * 1.0 / self.count
             self.sumx = self.sumx + (x - last_meanx) * (x - self.meanx)
             self.sumy = self.sumy + (y - last_meany) * (y - self.meany)
+            self.sum = self.sum + (x - last_meanx) * (y - self.meany)
         except ValueError:
             pass
     @property
@@ -41,22 +42,46 @@ class Covariance(object):
         
 def main():
     assert True
-    object = Covariance()
-    object.AddOne(3)
-    assert object.MeanX == 3
-    assert object.MeanY == 3
-    assert object.VarX == 0
-    assert object.VarY == 0
-    object.AddOne(7)
-    assert object.MeanX == 5
-    assert object.MeanY == 5
-    assert object.VarX == 8
-    assert object.VarY == 8
-    object.AddOne(11)
-    assert object.MeanX == 7
-    assert object.MeanY == 7
-    assert object.VarX == 16
-    assert object.VarY == 16
+    if True:
+        object = Covariance()
+        object.AddOne(3)
+        assert object.MeanX == 3
+        assert object.MeanY == 3
+        assert object.VarX == 0
+        assert object.VarY == 0
+        assert object.Cov == 0
+        object.AddOne(7)
+        assert object.MeanX == 5
+        assert object.MeanY == 5
+        assert object.VarX == 8
+        assert object.VarY == 8
+        assert object.Cov == 8
+        object.AddOne(11)
+        assert object.MeanX == 7
+        assert object.MeanY == 7
+        assert object.VarX == 16
+        assert object.VarY == 16
+        assert object.Cov == 16
+    if True:
+        object = Covariance()
+        object.Add(3, 11)
+        assert object.MeanX == 3
+        assert object.MeanY == 11
+        assert object.VarX == 0
+        assert object.VarY == 0
+        assert object.Cov == 0
+        object.Add(7, 7)
+        assert object.MeanX == 5
+        assert object.MeanY == 9
+        assert object.VarX == 8
+        assert object.VarY == 8
+        assert object.Cov == -8
+        object.Add(11, 3)
+        assert object.MeanX == 7
+        assert object.MeanY == 7
+        assert object.VarX == 16
+        assert object.VarY == 16
+        assert object.Cov == -16
     print('ok')
         
 if __name__=='__main__':
