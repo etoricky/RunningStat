@@ -19,10 +19,10 @@ public:
 		return count;
 	}
 	double MeanX() const {
-		return (count > 0) ? meanx : 0.0;
+		return meanx;
 	}
 	double MeanY() const {
-		return (count > 0) ? meany : 0.0;
+		return meany;
 	}
 	double VarX() const {
 		return ((count > 1) ? sumx / (count - 1) : 0.0);

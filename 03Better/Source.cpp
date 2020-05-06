@@ -13,7 +13,7 @@ public:
 		return count;
 	}
 	double Mean() const {
-		return (count > 0) ? mean : 0.0;
+		return mean;
 	}
 	double Var() const {
 		return ((count > 1) ? sum / (count - 1) : 0.0);
