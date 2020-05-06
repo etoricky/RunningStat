@@ -30,14 +30,10 @@ class Covariance(object):
         return self.meany
     @property
     def VarX(self):
-        if self.count==1:
-            return 0
-        return self.sumx/(self.count-1)
+        return 0 if self.count==1 else self.sumx/(self.count-1)
     @property
     def VarY(self):
-        if self.count==1:
-            return 0
-        return self.sumy/(self.count-1)
+        return 0 if self.count==1 else self.sumy/(self.count-1)
         
 def main():
     assert True
