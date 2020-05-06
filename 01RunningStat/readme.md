@@ -61,4 +61,4 @@ I saw this online https://www.johndcook.com/blog/standard_deviation/ so I have t
     };
 ```
 
-But I think this piece of source code can be simpler, and so I rewrite it here[https://github.com/etoricky/RunningStat/tree/master/02RunningStatSimpler]
+But I think this piece of source code can be simpler, and so I rewrite it [here](https://github.com/etoricky/RunningStat/tree/master/02RunningStatSimpler)
