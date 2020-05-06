@@ -11,12 +11,10 @@ class Covariance {
 public:
     void Add(double x, double y) {
         count++;
-        const double new_meanx = meanx + (x - meanx) / count;
-        const double new_meany = meany + (y - meany) / count;
-        const double new_sum = sum + (x - meanx) * (y - new_meany);
-        meanx = new_meanx;
-        meany = new_meany;
-        sum = new_sum;
+        const double last_meanx = meanx;
+        meanx = meanx + (x - meanx) / count;
+        meany = meany + (y - meany) / count;
+        sum = sum + (x - last_meanx) * (y - meany);
     }
     int Count() const {
         return count;

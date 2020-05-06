@@ -5,10 +5,9 @@ class Welford {
 public:
 	void Add(double x) {
 		count++;
-		const double new_mean = mean + (x - mean) / count;
-		const double new_sum = sum + (x - mean) * (x - new_mean);
-		mean = new_mean;
-		sum = new_sum;
+		const double last_mean = mean;
+		mean = mean + (x - mean) / count;
+		sum = sum + (x - last_mean) * (x - mean);
 	}
 	int Count() const {
 		return count;
