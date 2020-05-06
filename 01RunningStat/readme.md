@@ -4,61 +4,61 @@ Background
 I saw this online https://www.johndcook.com/blog/standard_deviation/ so I have tested it here.
 
 ```
-    class RunningStat
+class RunningStat
+{
+public:
+    RunningStat() : m_n(0) {}
+
+    void Clear()
     {
-    public:
-        RunningStat() : m_n(0) {}
+        m_n = 0;
+    }
 
-        void Clear()
+    void Push(double x)
+    {
+        m_n++;
+
+        // See Knuth TAOCP vol 2, 3rd edition, page 232
+        if (m_n == 1)
         {
-            m_n = 0;
+            m_oldM = m_newM = x;
+            m_oldS = 0.0;
         }
-
-        void Push(double x)
+        else
         {
-            m_n++;
+            m_newM = m_oldM + (x - m_oldM)/m_n;
+            m_newS = m_oldS + (x - m_oldM)*(x - m_newM);
 
-            // See Knuth TAOCP vol 2, 3rd edition, page 232
-            if (m_n == 1)
-            {
-                m_oldM = m_newM = x;
-                m_oldS = 0.0;
-            }
-            else
-            {
-                m_newM = m_oldM + (x - m_oldM)/m_n;
-                m_newS = m_oldS + (x - m_oldM)*(x - m_newM);
-    
-                // set up for next iteration
-                m_oldM = m_newM; 
-                m_oldS = m_newS;
-            }
+            // set up for next iteration
+            m_oldM = m_newM; 
+            m_oldS = m_newS;
         }
+    }
 
-        int NumDataValues() const
-        {
-            return m_n;
-        }
+    int NumDataValues() const
+    {
+        return m_n;
+    }
 
-        double Mean() const
-        {
-            return (m_n > 0) ? m_newM : 0.0;
-        }
+    double Mean() const
+    {
+        return (m_n > 0) ? m_newM : 0.0;
+    }
 
-        double Variance() const
-        {
-            return ( (m_n > 1) ? m_newS/(m_n - 1) : 0.0 );
-        }
+    double Variance() const
+    {
+        return ( (m_n > 1) ? m_newS/(m_n - 1) : 0.0 );
+    }
 
-        double StandardDeviation() const
-        {
-            return sqrt( Variance() );
-        }
+    double StandardDeviation() const
+    {
+        return sqrt( Variance() );
+    }
 
-    private:
-        int m_n;
-        double m_oldM, m_newM, m_oldS, m_newS;
-    };
+private:
+    int m_n;
+    double m_oldM, m_newM, m_oldS, m_newS;
+};
 ```
 
 But I think this piece of source code can be simpler, and so I rewrite it [here](https://github.com/etoricky/RunningStat/tree/master/02RunningStatSimpler)
