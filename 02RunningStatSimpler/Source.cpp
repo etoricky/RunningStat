@@ -1,8 +1,7 @@
 #include <iostream>
 #include <assert.h>
 
-class Simpler
-{
+class Simpler {
 public:
 	void Push(double x) {
 		count++;
