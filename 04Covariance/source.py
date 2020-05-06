@@ -5,6 +5,7 @@ class Covariance(object):
         self.meany = 0
         self.sumx = 0
         self.sumy = 0
+        self.sum = 0
     def AddOne(self, x):
         self.Add(x, x)
     def Add(self, x, y):
@@ -30,10 +31,13 @@ class Covariance(object):
         return self.meany
     @property
     def VarX(self):
-        return 0 if self.count==1 else self.sumx/(self.count-1)
+        return 0 if self.count<=1 else self.sumx/(self.count-1)
     @property
     def VarY(self):
-        return 0 if self.count==1 else self.sumy/(self.count-1)
+        return 0 if self.count<=1 else self.sumy/(self.count-1)
+    @property
+    def Cov(self):
+        return 0 if self.count<=1 else self.sum/(self.count-1)
         
 def main():
     assert True

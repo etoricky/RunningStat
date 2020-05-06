@@ -20,9 +20,7 @@ class Welford(object):
         return self.mean
     @property
     def Var(self):
-        if self.count==1:
-            return 0
-        return self.sum/(self.count-1)
+        return 0 if self.count<=1 else self.sum/(self.count-1)
         
 def main():
     assert True
