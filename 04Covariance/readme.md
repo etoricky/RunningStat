@@ -3,7 +3,7 @@ Background
 
 This implementation is the one on Wikipedia [here](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Online)  
 
-The corresponding mathematical formula is
+The corresponding mathematical formula is  
 ![Image description](https://wikimedia.org/api/rest_v1/media/math/render/svg/f440f49beea73d0aeec36d0101caa20f89e864aa)
 
 ```
