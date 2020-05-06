@@ -30,14 +30,14 @@ private:
 void main() {
 	Simpler stat;
 	stat.Push(3);
-	assert(stat.Mean() == 3);
-	assert(stat.Variance() == 0);
+	assert(stat.Mean() == 3); // =AVERAGE(3)
+	assert(stat.Variance() == 0); // =VAR.S(3)
 	stat.Push(7);
-	assert(stat.Mean() == 5);
-	assert(stat.Variance() == 8);
+	assert(stat.Mean() == 5); // =AVERAGE(3,7)
+	assert(stat.Variance() == 8); // =VAR.S(3,7)
 	stat.Push(11);
-	assert(stat.Mean() == 7);
-	assert(stat.Variance() == 16);
+	assert(stat.Mean() == 7); // =AVERAGE(3,7,11)
+	assert(stat.Variance() == 16); // =VAR.S(3,7,11)
 	std::cout << "ok";
 	std::cin.get();
 }
