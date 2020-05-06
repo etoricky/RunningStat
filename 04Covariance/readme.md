@@ -95,3 +95,15 @@ class Covariance(object):
     def Cov(self):
         return 0 if self.count<=1 else self.sum/(self.count-1)
 ```
+
+py note
+=======
+`class Covariance` is faster than the below pandas code doing the same thing
+
+```
+def function1(market, client):
+    index = pd.Series(range(1, len(market)+1))
+    series = index.map(lambda x: market.iloc[:x].cov(client.iloc[:x]) / market.iloc[:x].var())
+    df =  series.to_frame(name=client.name)
+    return df.set_index(market.index)
+```
